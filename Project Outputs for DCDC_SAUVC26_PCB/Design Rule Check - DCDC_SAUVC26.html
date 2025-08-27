@@ -1,0 +1,575 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD24\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">27.08.2025</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">22:08:50</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:04</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc" class="file"><acronym title="C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc">C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">53</td></tr>
+</table>
+</td>
+</table><a name="IDD4LVYGTURKXWKJBZMNSEI00ERLHZLQ23VPE5L2CC1U1ZL304LCYO"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDD1UQ0XM0UD5CIKY4WZ0ZEJY5LJNJYYHG0RGOVJIEIAVJ5THD255N">Clearance Constraint (Gap=0.2mm) (All),(All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNVSNCB0UTRV3JU4OZ5VU45VOPN23ALDWW4AWDXITTHX4IKKOUOEJ">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTEJBJQCJFXHYIQ3UTFVXYJ0ODPSQTVYZCCPQECPWUETLFEMAGTXC">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">11</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRLW04XZMKGKEP0YW34N25HWHQEW50ZOL3XKHUAM3YHEF4BJ5WV3O">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHUQCB2IJPXFYDUUAK0N2EL4OPEWWR0GOH5LD34CSIIBNBIPWDSAH">Width Constraint (Min=0.2mm) (Max=10mm) (Preferred=0.5mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFXHUGQLVDFPSLYQPRP0K55D4FLUR1GSLD204XSKIY4DADVAMFPLH">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1WEWRXNJXZN5LF0X4VMZZHU0HLGEAOEJ55EKT3IL4LLP440PDWPK">Power Plane Connect Rule(Relief Connect )(Expansion=0.2mm) (Conductor Width=0.5mm) (Air Gap=0.2mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0X52L4HAJTZAPD4V0XEPETGPVDNDDBKESG2TUPDDUAOLF05TWPAO">Minimum Annular Ring (Minimum=0.1mm) (IsVia)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHTGQJLZ0G54IMCFR0GNO4YY4QJB1QOSBVAYK5RIGT54Y5X4XFKPM">Minimum Annular Ring (Minimum=0.2mm) (IsPAD)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDRXOXLHHRY0PFR11C1KSGKN5MFY0KE22Y5I53AGQU3XLSHFZJJEG">Minimum Annular Ring (Minimum=0.15mm) (IsPAD)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZL2X4WPRLZMAJJHZZQXITB2OUD21ZDKM5P30I1I5VGDVR22QCY3O">Minimum Annular Ring (Minimum=0.15mm) (IsVia)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOFROKJJQ2LSFKGA0HUPZRYMGXIJ2AEIIGJQFLS5VF01X420MISG">Acute Angle Constraint (Minimum=35.000) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDE2ISNXIIE02WFQZPUL0DRTOB1DL51PU5KJYDNGBHEVRJYC15XMY">Hole Size Constraint (Min=0.3mm) (Max=5.9mm) (IsVia)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDM4WM4EYBZ2VBD4RB3CYILO3CJJHRRNSGCMDR5OGSAQODUC212RGI">Hole To Hole Clearance (Gap=0.25mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDY1KMVLNN2SKOK3IXRO3QI2LKVIGOVDRG4LWQ1CD2IISXFHYODTSM">Minimum Solder Mask Sliver (Gap=0.15mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYB3U4OXKYZEZJ0AANY05A1S1BH2Y423LAJ33EZJTPYQTXWJRE1IH">Silk To Solder Mask (Clearance=0.15mm) (Disabled)(IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1YCOPO5YFCC0BKL04X2W51MVXMPAZI5DHBNAIMM1PXV5NFV3YUSN">Silk to Silk (Clearance=0.15mm) (Disabled)(All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDML3BLCTHN50EDHD0NWYJEWKDLI4VTZHK0YIIY1OGZY0PCRBVF20B">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQ4HJFW5DLZAYKTCVTU0U3OAQ4FES52DL3LU4GRPAURIEFEFATXIB">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXQK3LCDSYMVTF2FXYHPNES4OXOPJ3CUX0EU3YVJKGFPKBQVNVZMH">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDCLFEIFLPBUMEOUPBG5G5PQV1JG4KZ23KHZJVAF4Z53HPVKKSQPE">Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors'))</a></td>
+<td class="column2">13</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDK4NHBEIY0ZASBHXMIOZLHGL5ZOSZ0BVSKPGOYAJI2IC5PAIX1NMN">Room DCDC_12V (Bounding Region = (60mm, 49mm, 85mm, 67mm) (InComponentClass('DCDC_12V'))</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFPWCDA5J5POBKM0HV03C1KLURUAHK0UQ54SUOEWJDDTR13THXB">Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo'))</a></td>
+<td class="column2">11</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDT5FEI4BZ1BVGPGT0HNNXVTGGXNUBR2YM4SJTAFFJ1XC5TOZBYRLB">Room DCDC_5V (Bounding Region = (30mm, 51mm, 55mm, 69mm) (InComponentClass('DCDC_5V'))</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDR1RIY32H0YHD4AQECCMB1CXZD3WMQ2R00LMT3BBCXJYTL3BK1LP">Room DCDC_35V (Bounding Region = (30mm, 70mm, 84mm, 94mm) (InComponentClass('DCDC_35V'))</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDE5X23WG1ANW5IY4OXABOAITWMKJFHPUCCDB5SGH2ASNWDWTB4F4J">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">53</td>
+</tr>
+</table><br><a name="IDD1UQ0XM0UD5CIKY4WZ0ZEJY5LJNJYYHG0RGOVJIEIAVJ5THD255N"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.2mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3128.387mil|Location2.X=3134.636mil|Location1.Y=2373.844mil|Location2.Y=2380.093mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3128.387mil|Location2.X=3134.636mil|Location1.Y=2373.844mil|Location2.Y=2380.093mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.2mm) Between Pad C39-2(60.894mm,35.354mm) on Top Layer And Track (58.614mm,35.375mm)(60.509mm,35.375mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3048.391mil|Location2.X=3054.64mil|Location1.Y=2490.97mil|Location2.Y=2497.219mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3048.391mil|Location2.X=3054.64mil|Location1.Y=2490.97mil|Location2.Y=2497.219mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.2mm) Between Pad R30-2(57.509mm,38.35mm) on Top Layer And Track (57.509mm,38.35mm)(57.699mm,38.16mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3055.872mil|Location2.X=3062.121mil|Location1.Y=2475.222mil|Location2.Y=2481.471mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3055.872mil|Location2.X=3062.121mil|Location1.Y=2475.222mil|Location2.Y=2481.471mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.2mm) Between Pad R30-2(57.509mm,38.35mm) on Top Layer And Track (57.699mm,36mm)(57.699mm,38.16mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDNVSNCB0UTRV3JU4OZ5VU45VOPN23ALDWW4AWDXITTHX4IKKOUOEJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Short-Circuit Constraint (Allowed=No) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3129.205mil|Location2.X=3177.954mil|Location1.Y=2352.594mil|Location2.Y=2401.343mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3129.205mil|Location2.X=3177.954mil|Location1.Y=2352.594mil|Location2.Y=2401.343mil|Absolute=True">Short-Circuit Constraint: Between Pad C39-2(60.894mm,35.354mm) on Top Layer And Track (58.614mm,35.375mm)(60.509mm,35.375mm) on Top Layer Location : [X = 80.101mm][Y = 60.375mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3039.952mil|Location2.X=3070.561mil|Location1.Y=2475.05mil|Location2.Y=2505.659mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3039.952mil|Location2.X=3070.561mil|Location1.Y=2475.05mil|Location2.Y=2505.659mil|Absolute=True">Short-Circuit Constraint: Between Pad R30-2(57.509mm,38.35mm) on Top Layer And Track (57.509mm,38.35mm)(57.699mm,38.16mm) on Top Layer Location : [X = 77.604mm][Y = 63.255mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3048.153mil|Location2.X=3069.84mil|Location1.Y=2474.648mil|Location2.Y=2496.334mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3048.153mil|Location2.X=3069.84mil|Location1.Y=2474.648mil|Location2.Y=2496.334mil|Absolute=True">Short-Circuit Constraint: Between Pad R30-2(57.509mm,38.35mm) on Top Layer And Track (57.699mm,36mm)(57.699mm,38.16mm) on Top Layer Location : [X = 77.699mm][Y = 63.131mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDTEJBJQCJFXHYIQ3UTFVXYJ0ODPSQTVYZCCPQECPWUETLFEMAGTXC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2506.457mil|Location2.X=2855.905mil|Location1.Y=1405.827mil|Location2.Y=1605.906mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2506.457mil|Location2.X=2855.905mil|Location1.Y=1405.827mil|Location2.Y=1605.906mil|Absolute=True">Un-Routed Net Constraint: Net +12В_servo Between Track (44.904mm,11.948mm)(46.204mm,13.248mm) on Top Layer And Pad C13-2(50mm,13.25mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3031.831mil|Location2.X=3239.039mil|Location1.Y=2356.375mil|Location2.Y=2510.827mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3031.831mil|Location2.X=3239.039mil|Location1.Y=2356.375mil|Location2.Y=2510.827mil|Absolute=True">Un-Routed Net Constraint: Net +12В Between Pad R30-2(57.509mm,38.35mm) on Top Layer And Pad C39-2(60.894mm,35.354mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1312.008mil|Location2.X=1429.134mil|Location1.Y=1326.772mil|Location2.Y=1438.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1312.008mil|Location2.X=1429.134mil|Location1.Y=1326.772mil|Location2.Y=1438.976mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad DA1-6(14.075mm,11.3mm) on Top Layer [Unplated] And Via (16mm,9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2850.728mil|Location2.X=2992.461mil|Location1.Y=2453.15mil|Location2.Y=2510.827mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2850.728mil|Location2.X=2992.461mil|Location1.Y=2453.15mil|Location2.Y=2510.827mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad DA4-3(53.209mm,37.635mm) on Top Layer And Pad R29-1(55.509mm,38.35mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2213.583mil|Location2.X=2445.61mil|Location1.Y=2132.047mil|Location2.Y=2312.008mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2213.583mil|Location2.X=2445.61mil|Location1.Y=2132.047mil|Location2.Y=2312.008mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad HL5-2(37mm,33mm) on Top Layer And Pad VD6-1(41.093mm,30.979mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2019.882mil|Location2.X=2274.764mil|Location1.Y=1447.756mil|Location2.Y=1662.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2019.882mil|Location2.X=2274.764mil|Location1.Y=1447.756mil|Location2.Y=1662.323mil|Absolute=True">Un-Routed Net Constraint: Net SW Between Pad VT2-3(31.635mm,15.082mm) on Top Layer [Unplated] And Pad L1-1(36.304mm,14.498mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1611.22mil|Location2.X=1932.087mil|Location1.Y=3104.331mil|Location2.Y=3143.701mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1611.22mil|Location2.X=1932.087mil|Location1.Y=3104.331mil|Location2.Y=3143.701mil|Absolute=True">Un-Routed Net Constraint: Net NetDA3_1 Between Pad R22-1(21.35mm,54.35mm) on Top Layer And Pad R21-2(28.65mm,54.35mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1440.294mil|Location2.X=1727.953mil|Location1.Y=2934.706mil|Location2.Y=3145.276mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1440.294mil|Location2.X=1727.953mil|Location1.Y=2934.706mil|Location2.Y=3145.276mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Track (19mm,52.205mm)(19.123mm,52.082mm) on Top Layer And Pad R25-2(21.35mm,52.35mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1673.228mil|Location2.X=1866.535mil|Location1.Y=1202.756mil|Location2.Y=1402.087mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1673.228mil|Location2.X=1866.535mil|Location1.Y=1202.756mil|Location2.Y=1402.087mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R6-2(23mm,5.975mm) on Top Layer And Pad R8-1(26mm,10.038mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3069.626mil|Location2.X=3632.677mil|Location1.Y=2276.968mil|Location2.Y=2751.575mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3069.626mil|Location2.X=3632.677mil|Location1.Y=2276.968mil|Location2.Y=2751.575mil|Absolute=True">Un-Routed Net Constraint: Net +5В Between Track (58.614mm,35.375mm)(60.509mm,35.375mm) on Top Layer And Pad XP1-15(69.73mm,42.35mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1238.583mil|Location2.X=1445.502mil|Location1.Y=1466.929mil|Location2.Y=1653.12mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1238.583mil|Location2.X=1445.502mil|Location1.Y=1466.929mil|Location2.Y=1653.12mil|Absolute=True">Un-Routed Net Constraint: Net +24В Between Track (14mm,14.8mm)(14mm,16.825mm) on Top Layer And Track (14.075mm,14.55mm)(14.176mm,14.449mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDML3BLCTHN50EDHD0NWYJEWKDLI4VTZHK0YIIY1OGZY0PCRBVF20B"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.11mil|Location2.X=3067.67mil|Location1.Y=2484.689mil|Location2.Y=2522.139mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.11mil|Location2.X=3067.67mil|Location1.Y=2484.689mil|Location2.Y=2522.139mil|Absolute=True">Net Antennae: Track (57.509mm,38.35mm)(57.699mm,38.16mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3160.221mil|Location2.X=3185.78mil|Location1.Y=2367.563mil|Location2.Y=2405.013mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3160.221mil|Location2.X=3185.78mil|Location1.Y=2367.563mil|Location2.Y=2405.013mil|Absolute=True">Net Antennae: Track (58.614mm,35.375mm)(60.509mm,35.375mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDXQK3LCDSYMVTF2FXYHPNES4OXOPJ3CUX0EU3YVJKGFPKBQVNVZMH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1432.017mil|Location2.X=1439.579mil|Location1.Y=3749.914mil|Location2.Y=3757.476mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1432.017mil|Location2.X=1439.579mil|Location1.Y=3749.914mil|Location2.Y=3757.476mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.25mm) Between Board Edge And Text "L3" (15.636mm,69.488mm) on Top Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDDCLFEIFLPBUMEOUPBG5G5PQV1JG4KZ23KHZJVAF4Z53HPVKKSQPE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3464.567mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3461.496mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3464.567mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3461.496mil|Absolute=True">Room Definition: Between DIP Component XP1-PLD-40 (71mm,36mm) on Top Layer And Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3068.898mil|Location2.X=3700.787mil|Location1.Y=1096.457mil|Location2.Y=3425.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3068.898mil|Location2.X=3700.787mil|Location1.Y=1096.457mil|Location2.Y=3425.197mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component HL1-LED (60mm,4mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=860.236mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=860.236mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component HL2-LED (3mm,15.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3379.921mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3379.921mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component HL3-LED (67mm,28mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3068.898mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3627.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3068.898mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3627.953mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component HL4-LED (60mm,66mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2198.819mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2198.819mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component HL5-LED (37mm,32mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2320.866mil|Location2.X=3700.787mil|Location1.Y=1096.457mil|Location2.Y=3425.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2320.866mil|Location2.X=3700.787mil|Location1.Y=1096.457mil|Location2.Y=3425.197mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component HL6-LED (41mm,4mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3264.764mil|Location2.X=3700.787mil|Location1.Y=1110.236mil|Location2.Y=3425.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3264.764mil|Location2.X=3700.787mil|Location1.Y=1110.236mil|Location2.Y=3425.197mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component R14-Resistor (64mm,4mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=874.016mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=874.016mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component R15-Resistor (3mm,19.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3393.701mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3393.701mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component R16-Resistor (67mm,32mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3264.764mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3614.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3264.764mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3614.173mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component R17-Resistor (64mm,66mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2212.599mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2212.599mil|Location2.X=3700.787mil|Location1.Y=1377.953mil|Location2.Y=3425.197mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component R18-Resistor (37mm,28mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2516.732mil|Location2.X=3700.787mil|Location1.Y=1110.236mil|Location2.Y=3425.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2516.732mil|Location2.X=3700.787mil|Location1.Y=1110.236mil|Location2.Y=3425.197mil|Absolute=True">Room Definition: Between Room Connectors (Bounding Region = (88mm, 35mm, 94mm, 87mm) (InComponentClass('Connectors')) And SMT Small Component R19-Resistor (45mm,4mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDK4NHBEIY0ZASBHXMIOZLHGL5ZOSZ0BVSKPGOYAJI2IC5PAIX1NMN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room DCDC_12V (Bounding Region = (60mm, 49mm, 85mm, 67mm) (InComponentClass('DCDC_12V'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2354.543mil|Location2.X=3346.457mil|Location1.Y=1929.134mil|Location2.Y=2637.795mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2354.543mil|Location2.X=3346.457mil|Location1.Y=1929.134mil|Location2.Y=2637.795mil|Absolute=True">Room Definition: Between Room DCDC_12V (Bounding Region = (60mm, 49mm, 85mm, 67mm) (InComponentClass('DCDC_12V')) And SMT Small Component C35-Capacitor (41.509mm,37mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2362.205mil|Location2.X=3369.945mil|Location1.Y=1929.134mil|Location2.Y=2637.795mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2362.205mil|Location2.X=3369.945mil|Location1.Y=1929.134mil|Location2.Y=2637.795mil|Absolute=True">Room Definition: Between Room DCDC_12V (Bounding Region = (60mm, 49mm, 85mm, 67mm) (InComponentClass('DCDC_12V')) And SMT Small Component C38-Capacitor (63.893mm,36.979mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2362.205mil|Location2.X=3346.457mil|Location1.Y=1915.61mil|Location2.Y=2637.795mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2362.205mil|Location2.X=3346.457mil|Location1.Y=1915.61mil|Location2.Y=2637.795mil|Absolute=True">Room Definition: Between Room DCDC_12V (Bounding Region = (60mm, 49mm, 85mm, 67mm) (InComponentClass('DCDC_12V')) And SMT Small Component L5-IHLP4040DZER330M11 (58.509mm,29mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.059mil|Location2.X=3346.457mil|Location1.Y=1929.134mil|Location2.Y=2637.795mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.059mil|Location2.X=3346.457mil|Location1.Y=1929.134mil|Location2.Y=2637.795mil|Absolute=True">Room Definition: Between Room DCDC_12V (Bounding Region = (60mm, 49mm, 85mm, 67mm) (InComponentClass('DCDC_12V')) And SMT Small Component VD6-SK56 (44.509mm,31mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDFPWCDA5J5POBKM0HV03C1KLURUAHK0UQ54SUOEWJDDTR13THXB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1854.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1854.606mil|Absolute=True">Room Definition: Between Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo')) And SMT SIP Component VT2-SIR426DP-T1-GE3 (31mm,17.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1196.732mil|Location2.Y=1811.024mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1196.732mil|Location2.Y=1811.024mil|Absolute=True">Room Definition: Between Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo')) And SMT SIP Component VT3-SIR426DP-T1-GE3 (31mm,9.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1816.929mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1816.929mil|Absolute=True">Room Definition: Between Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo')) And SMT Small Component C10-Capacitor (17mm,18.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1816.929mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1816.929mil|Absolute=True">Room Definition: Between Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo')) And SMT Small Component C12-Capacitor (20mm,18.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1816.929mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1816.929mil|Absolute=True">Room Definition: Between Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo')) And SMT Small Component C14-Capacitor (23mm,18.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1211.614mil|Location2.Y=1811.024mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1211.614mil|Location2.Y=1811.024mil|Absolute=True">Room Definition: Between Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo')) And SMT Small Component C17-Capacitor (20mm,6.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1211.614mil|Location2.Y=1811.024mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1211.614mil|Location2.Y=1811.024mil|Absolute=True">Room Definition: Between Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo')) And SMT Small Component C3-Capacitor (14mm,6.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1816.929mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1816.929mil|Absolute=True">Room Definition: Between Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo')) And SMT Small Component C8-Capacitor (14mm,18.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1815.866mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1220.473mil|Location2.Y=1815.866mil|Absolute=True">Room Definition: Between Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo')) And SMT Small Component L1-CDSPRH127-150M (41mm,14.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1202.756mil|Location2.Y=1811.024mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1202.756mil|Location2.Y=1811.024mil|Absolute=True">Room Definition: Between Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo')) And SMT Small Component R6-Resistor (23mm,6.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1213.583mil|Location2.Y=1811.024mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1023.622mil|Location2.X=3425.197mil|Location1.Y=1213.583mil|Location2.Y=1811.024mil|Absolute=True">Room Definition: Between Room DCDC_12V_Servo (Bounding Region = (26mm, 31mm, 87mm, 46mm) (InComponentClass('DCDC_12V_Servo')) And SMT Small Component R7-Resistor (17mm,6.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDT5FEI4BZ1BVGPGT0HNNXVTGGXNUBR2YM4SJTAFFJ1XC5TOZBYRLB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room DCDC_5V (Bounding Region = (30mm, 51mm, 55mm, 69mm) (InComponentClass('DCDC_5V'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1173.441mil|Location2.X=2165.354mil|Location1.Y=2007.874mil|Location2.Y=2716.535mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1173.441mil|Location2.X=2165.354mil|Location1.Y=2007.874mil|Location2.Y=2716.535mil|Absolute=True">Room Definition: Between Room DCDC_5V (Bounding Region = (30mm, 51mm, 55mm, 69mm) (InComponentClass('DCDC_5V')) And SMT Small Component C25-Capacitor (11.508mm,39mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1181.102mil|Location2.X=2173.685mil|Location1.Y=2007.874mil|Location2.Y=2716.535mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1181.102mil|Location2.X=2173.685mil|Location1.Y=2007.874mil|Location2.Y=2716.535mil|Absolute=True">Room Definition: Between Room DCDC_5V (Bounding Region = (30mm, 51mm, 55mm, 69mm) (InComponentClass('DCDC_5V')) And SMT Small Component C28-Capacitor (33.509mm,39mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1181.102mil|Location2.X=2165.354mil|Location1.Y=1994.35mil|Location2.Y=2716.535mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1181.102mil|Location2.X=2165.354mil|Location1.Y=1994.35mil|Location2.Y=2716.535mil|Absolute=True">Room Definition: Between Room DCDC_5V (Bounding Region = (30mm, 51mm, 55mm, 69mm) (InComponentClass('DCDC_5V')) And SMT Small Component L2-IHLP4040DZER330M11 (28.509mm,31mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1173.957mil|Location2.X=2165.354mil|Location1.Y=2007.874mil|Location2.Y=2716.535mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1173.957mil|Location2.X=2165.354mil|Location1.Y=2007.874mil|Location2.Y=2716.535mil|Absolute=True">Room Definition: Between Room DCDC_5V (Bounding Region = (30mm, 51mm, 55mm, 69mm) (InComponentClass('DCDC_5V')) And SMT Small Component VD3-SK56 (14.509mm,33mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDR1RIY32H0YHD4AQECCMB1CXZD3WMQ2R00LMT3BBCXJYTL3BK1LP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room DCDC_35V (Bounding Region = (30mm, 70mm, 84mm, 94mm) (InComponentClass('DCDC_35V'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\%D0%9F%D0%BB%D0%B0%D1%82%D1%8B\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1181.102mil|Location2.X=3323.819mil|Location1.Y=2755.906mil|Location2.Y=3700.787mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\1\Desktop\Платы\DCDC_SAUVC26_PCB\DCDC_SAUVC26.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1181.102mil|Location2.X=3323.819mil|Location1.Y=2755.906mil|Location2.Y=3700.787mil|Absolute=True">Room Definition: Between Room DCDC_35V (Bounding Region = (30mm, 70mm, 84mm, 94mm) (InComponentClass('DCDC_35V')) And SMT Small Component C33-Capacitor (59mm,52.35mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
