@@ -175,7 +175,7 @@ GenerateClassCluster=0
 DocumentUniqueId=SVIEWFNO
 
 [Document8]
-DocumentPath=DCDC_SAUVC26-02_assembly.PCBDwf
+DocumentPath=DCDC_SAUVC26_assembly.PCBDwf
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -313,9 +313,7 @@ ParameterCount=0
 ConstraintFileCount=0
 ReleaseItemId=
 Variant=[No Variations]
-OutputJobsCount=1
-DocumentReferenceClass1=DocumentReference
-OutputJobFileName1=HydroJob.OutJob
+OutputJobsCount=0
 ContentTypeGUID=0C520D2A-E60C-11DF-B822-12313F0024A2
 ConfigurationType=Fabrication
 
