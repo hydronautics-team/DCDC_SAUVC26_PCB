@@ -44,10 +44,16 @@ CrossRefPorts=3
 CrossRefCrossSheets=1
 CrossRefSheetEntries=0
 CrossRefFollowFromMainSettings=1
+CurrentVariant=02
 
 [Preferences]
 PrefsVaultGUID=
 PrefsRevisionGUID=
+
+[Release]
+ReleaseTarget=1
+ReleaseFolderPath=[OutputPath]
+ReleaseZipPath=[OutputPath][ProjectName].zip
 
 [Document1]
 DocumentPath=..\Hydrolib\Hydrolib.DbLib
@@ -168,6 +174,74 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=SVIEWFNO
 
+[Document8]
+DocumentPath=DCDC_SAUVC26-02_assembly.PCBDwf
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=GIBSHKZP
+
+[Document9]
+DocumentPath=DCDC_SAUVC26_fabrication.PCBDwf
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=TGWDZPOP
+
+[Document10]
+DocumentPath=HydroJob.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document11]
+DocumentPath=DCDC_SAUVC26_PCB.BomDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
 [ProjectVariant1]
 UniqueId=9848c27c-75c9-4f29-8d90-ddb55ce94e62
 Description=01
@@ -195,6 +269,34 @@ ParamVariationCount=0
 DocumentPath=Project Outputs for DCDC_SAUVC26_PCB\Design Rule Check - DCDC_SAUVC26.html
 DItemRevisionGUID=
 
+[Parameter1]
+Name=CheckedBy
+Value=Карманов С.
+
+[Parameter2]
+Name=Decimal_Number_PCB
+Value=ГИДР.123456.014
+
+[Parameter3]
+Name=Decimal_Number_Shematic
+Value=ГИДР.123456.014
+
+[Parameter4]
+Name=DrawnBy
+Value=Михайловский Г.
+
+[Parameter5]
+Name=Release_Date
+Value=14.09.2025
+
+[Parameter6]
+Name=Title
+Value=Плата преобразователей постоянного тока
+
+[Parameter7]
+Name=Version
+Value=01
+
 [Configuration1]
 Name=Sources
 ParameterCount=0
@@ -204,6 +306,53 @@ Variant=[No Variations]
 OutputJobsCount=0
 ContentTypeGUID=CB6F2064-E317-11DF-B822-12313F0024A2
 ConfigurationType=Source
+
+[Configuration2]
+Name=Fabrication
+ParameterCount=0
+ConstraintFileCount=0
+ReleaseItemId=
+Variant=[No Variations]
+OutputJobsCount=0
+ContentTypeGUID=0C520D2A-E60C-11DF-B822-12313F0024A2
+ConfigurationType=Fabrication
+
+[Configuration3]
+Name=Assembly 01
+ParameterCount=0
+ConstraintFileCount=0
+ReleaseItemId=
+Variant=01
+OutputJobsCount=1
+DocumentReferenceClass1=DocumentReference
+OutputJobFileName1=HydroJob.OutJob
+ContentTypeGUID=0D12F8DC-E60C-11DF-B822-12313F0024A2
+ConfigurationType=Assembly
+
+[Configuration4]
+Name=Assembly 02
+ParameterCount=0
+ConstraintFileCount=0
+ReleaseItemId=
+Variant=02
+OutputJobsCount=1
+DocumentReferenceClass1=DocumentReference
+OutputJobFileName1=HydroJob.OutJob
+ContentTypeGUID=0D12F8DC-E60C-11DF-B822-12313F0024A2
+ConfigurationType=Assembly
+LocalReleaseTarget=ГИДР.123456.014-01.02
+
+[Configuration5]
+Name=Assembly
+ParameterCount=0
+ConstraintFileCount=0
+ReleaseItemId=
+Variant=[No Variations]
+OutputJobsCount=1
+DocumentReferenceClass1=DocumentReference
+OutputJobFileName1=HydroJob.OutJob
+ContentTypeGUID=0D12F8DC-E60C-11DF-B822-12313F0024A2
+ConfigurationType=Assembly
 
 [OutputGroup1]
 Name=Netlist Outputs
@@ -559,6 +708,11 @@ OutputName9=Report Single Pin Nets
 OutputDocumentPath9=
 OutputVariantName9=[No Variations]
 OutputDefault9=0
+OutputType10=GOSTBOM
+OutputName10=GOST BOM
+OutputDocumentPath10=
+OutputVariantName10=[No Variations]
+OutputDefault10=0
 
 [OutputGroup7]
 Name=Other Outputs
