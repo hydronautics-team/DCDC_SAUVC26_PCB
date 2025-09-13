@@ -1,5 +1,5 @@
-Record=TopLevelDocument|FileName=Connectors.SchDoc|SheetNumber=4
-Record=NoMainPathDocument|SourceDocument=Connectors.SchDoc|FileName=DCDC_5V.SchDoc|SheetNumber=3
-Record=NoMainPathDocument|SourceDocument=Connectors.SchDoc|FileName=DCDC_12V.SchDoc|SheetNumber=2
-Record=NoMainPathDocument|SourceDocument=Connectors.SchDoc|FileName=LEDs_indication.SchDoc|SheetNumber=5
-Record=NoMainPathDocument|SourceDocument=Connectors.SchDoc|FileName=Main.SchDoc|SheetNumber=1
+Record=TopLevelDocument|FileName=Connectors.SchDoc|SheetNumber=5
+Record=NoMainPathDocument|SourceDocument=Connectors.SchDoc|FileName=DCDC_5V.SchDoc|SheetNumber=1
+Record=NoMainPathDocument|SourceDocument=Connectors.SchDoc|FileName=DCDC_12V.SchDoc|SheetNumber=3
+Record=NoMainPathDocument|SourceDocument=Connectors.SchDoc|FileName=DCDC_12V_Servo.SchDoc|SheetNumber=2
+Record=NoMainPathDocument|SourceDocument=Connectors.SchDoc|FileName=DCDC_35V.SchDoc|SheetNumber=4
