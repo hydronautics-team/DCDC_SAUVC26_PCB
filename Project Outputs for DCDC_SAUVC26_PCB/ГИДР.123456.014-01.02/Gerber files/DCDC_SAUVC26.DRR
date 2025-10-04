@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------------------------------------------------------
-NCDrill File Report For: DCDC_SAUVC26.PcbDoc   14.09.2025  13:35:25
+NCDrill File Report For: DCDC_SAUVC26.PcbDoc   04.10.2025  10:55:31
 ----------------------------------------------------------------------------------------------------------------------------------
 
 Layer Pair : Top Layer to Bottom Layer
@@ -7,11 +7,11 @@ ASCII RoundHoles File : DCDC_SAUVC26.TXT
 
 Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
 ----------------------------------------------------------------------------------------------------------------------------------
-T1      0.3mm (12mil)                                             Round             153       PTH        574.56mm (22.62inch)
-T2      0.5mm (20mil)                                             Round             19        PTH        182.28mm (7.18inch)
+T1      0.3mm (12mil)                                             Round             142       PTH        635.64mm (25.03inch)
+T2      0.5mm (20mil)                                             Round             12        PTH        173.13mm (6.82inch)
 T3      1mm (39mil)                                               Round             40        PTH        139.70mm (5.50inch)
 T4      3.2mm (126mil)                                            Round             4         NPTH       225.29mm (8.87inch)
 ----------------------------------------------------------------------------------------------------------------------------------
-Totals                                                                              216
+Totals                                                                              198
 
 Total Processing Time (hh:mm:ss) : 00:00:00
